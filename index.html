@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Likert Gauge Mockups</title>
+<style>
+  :root {
+    --c2a-surface: #ffffff;
+    --c2a-neutral-200: #e5e7eb;
+    --c2a-neutral-500: #6b7280;
+    --c2a-neutral-600: #4b5563;
+    --c2a-neutral-700: #374151;
+    --c2a-blue-50: #eff6ff;
+    --c2a-blue-300: #93c5fd;
+    --c2a-blue-700: #1d4ed8;
+    --c2a-blue-800: #1e40af;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f3f4f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    gap: 2rem;
+    margin: 0;
+  }
+
+  /* Mobile container simulation */
+  .card {
+    background: var(--c2a-surface);
+    width: 100%;
+    max-width: 375px; /* Mobile viewport width from spec */
+    padding: 24px 16px;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-sizing: border-box;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--c2a-neutral-700);
+    margin-top: 0;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  /* Likert Component Styles */
+  .likert-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .likert-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px; /* 8px gap for motor control forgiveness */
+    align-items: end; /* Aligns labels to the bottom of their track */
+  }
+
+  .likert-label {
+    font-size: 11px; /* text-xs */
+    color: var(--c2a-neutral-500);
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    min-height: 26px; /* Keeps grid stable even if empty */
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .likert-button {
+    height: 48px; /* 48px minimum touch target */
+    border-radius: 12px; /* rounded-xl */
+    border: 1px solid var(--c2a-neutral-200);
+    background-color: var(--c2a-surface);
+    color: var(--c2a-neutral-700);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .likert-button:hover {
+    border-color: var(--c2a-blue-300);
+    background-color: var(--c2a-blue-50);
+  }
+
+  .likert-button.selected {
+    background-color: var(--c2a-blue-700);
+    color: white;
+    border: 2px solid var(--c2a-blue-800);
+  }
+
+  .confirmation-line {
+    font-size: 14px; /* text-sm */
+    color: var(--c2a-neutral-600);
+    text-align: center;
+    font-weight: 500;
+    min-height: 20px;
+    padding-top: 8px;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Format 1 -->
+  <div class="card" id="format1">
+    <h2 class="card-title">Format 1: All 5 Labeled</h2>
+    <div class="likert-container">
+      <div class="likert-grid" role="radiogroup" aria-label="Rating scale from Strongly disagree to Strongly agree">
+        <div class="likert-label">Strongly<br>disagree</div>
+        <div class="likert-label">Somewhat<br>disagree</div>
+        <div class="likert-label">Neither</div>
+        <div class="likert-label">Somewhat<br>agree</div>
+        <div class="likert-label">Strongly<br>agree</div>
+        
+        <button class="likert-button" role="radio" aria-checked="false" data-val="1">1</button>
+        <button class="likert-button" role="radio" aria-checked="false" data-val="2">2</button>
+        <button class="likert-button selected" role="radio" aria-checked="true" data-val="3">3</button>
+        <button class="likert-button" role="radio" aria-checked="false" data-val="4">4</button>
+        <button class="likert-button" role="radio" aria-checked="false" data-val="5">5</button>
+      </div>
+      <div class="confirmation-line">Selected: 3 — Neither</div>
+    </div>
+  </div>
+
+  <!-- Format 3 -->
+  <div class="card" id="format3">
+    <h2 class="card-title">Format 3: 3-Anchor (BMPN)</h2>
+    <div class="likert-container">
+      <div class="likert-grid" role="radiogroup" aria-label="Rating scale from No agreement to Much agreement">
+        <div class="likert-label">No<br>agreement</div>
+        <div class="likert-label"></div>
+        <div class="likert-label">Some<br>agreement</div>
+        <div class="likert-label"></div>
+        <div class="likert-label">Much<br>agreement</div>
+        
+        <button class="likert-button" role="radio" aria-checked="false" data-val="1">1</button>
+        <button class="likert-button selected" role="radio" aria-checked="true" data-val="2">2</button>
+        <button class="likert-button" role="radio" aria-checked="false" data-val="3">3</button>
+        <button class="likert-button" role="radio" aria-checked="false" data-val="4">4</button>
+        <button class="likert-button" role="radio" aria-checked="false" data-val="5">5</button>
+      </div>
+      <div class="confirmation-line">Selected: 2 — between "No agreement" and "Some agreement"</div>
+    </div>
+  </div>
+
+  <!-- Format S -->
+  <div class="card" id="formatS">
+    <h2 class="card-title">Format S: Endpoint-only (IRI)</h2>
+    <div class="likert-container">
+      <div class="likert-grid" role="radiogroup" aria-label="Rating scale from Does not describe me well to Describes me very well">
+        <div class="likert-label">Does not<br>describe me</div>
+        <div class="likert-label"></div>
+        <div class="likert-label"></div>
+        <div class="likert-label"></div>
+        <div class="likert-label">Describes me<br>very well</div>
+        
+        <button class="likert-button" role="radio" aria-checked="false" data-val="1">1</button>
+        <button class="likert-button" role="radio" aria-checked="false" data-val="2">2</button>
+        <button class="likert-button" role="radio" aria-checked="false" data-val="3">3</button>
+        <button class="likert-button selected" role="radio" aria-checked="true" data-val="4">4</button>
+        <button class="likert-button" role="radio" aria-checked="false" data-val="5">5</button>
+      </div>
+      <div class="confirmation-line">Selected: 4 — closer to "Describes me very well"</div>
+    </div>
+  </div>
+
+  <script>
+    // Dictionaries for dynamic confirmation text based on the format
+    const textMapping = {
+      format1: {
+        1: "Strongly disagree",
+        2: "Somewhat disagree",
+        3: "Neither",
+        4: "Somewhat agree",
+        5: "Strongly agree"
+      },
+      format3: {
+        1: "No agreement",
+        2: "between 'No agreement' and 'Some agreement'",
+        3: "Some agreement",
+        4: "between 'Some agreement' and 'Much agreement'",
+        5: "Much agreement"
+      },
+      formatS: {
+        1: "Does not describe me well",
+        2: "closer to 'Does not describe me well'",
+        3: "neutral / in the middle",
+        4: "closer to 'Describes me very well'",
+        5: "Describes me very well"
+      }
+    };
+
+    // Setup interactivity for all cards
+    document.querySelectorAll('.card').forEach(card => {
+      const formatId = card.id;
+      const buttons = card.querySelectorAll('.likert-button');
+      const confirmationLine = card.querySelector('.confirmation-line');
+
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Remove selected state from all buttons in this card
+          buttons.forEach(btn => {
+            btn.classList.remove('selected');
+            btn.setAttribute('aria-checked', 'false');
+          });
+
+          // Add selected state to clicked button
+          button.classList.add('selected');
+          button.setAttribute('aria-checked', 'true');
+
+          // Update text
+          const val = button.getAttribute('data-val');
+          const description = textMapping[formatId][val];
+          confirmationLine.textContent = `Selected: ${val} — ${description}`;
+        });
+      });
+    });
+  </script>
+</body>
+</html>
